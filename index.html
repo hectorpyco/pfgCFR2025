@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Académico del Área de Salud</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p class="loading-text">Cargando datos...</p>
+    </div>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar con filtros -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <div class="profile-image">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h3>Área de Salud</h3>
+                <p>Dashboard Académico</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#"><i class="fas fa-home"></i> Inicio</a>
+                    </li>
+                    <li class="filter-section">
+                        <a href="#"><i class="fas fa-filter"></i> Filtros</a>
+                        <div class="filters-container">
+                            <div class="filter-group">
+                                <label class="filter-label">Año</label>
+                                <div class="range-filter">
+                                    <select id="yearFilterFrom">
+                                        <option value="all">Desde</option>
+                                    </select>
+                                    <select id="yearFilterTo">
+                                        <option value="all">Hasta</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">Tipo Institución</label>
+                                <select id="institutionTypeFilter">
+                                    <option value="all">Todos los tipos</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">Carrera</label>
+                                <select id="careerFilter">
+                                    <option value="all">Todas las carreras</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">Tipo de Gestión</label>
+                                <select id="managementTypeFilter">
+                                    <option value="all">Todos los tipos</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">Género</label>
+                                <select id="genderFilter">
+                                    <option value="all">Todos</option>
+                                    <option value="MUJER">Mujer</option>
+                                    <option value="HOMBRE">Hombre</option>
+                                </select>
+                            </div>
+                            <button id="applyFilters">Aplicar Filtros</button>
+                        </div>
+            
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <header class="dashboard-header">
+                <h1>Dashboard Académico del Área de Salud</h1>
+                <div class="header-controls">
+
+                </div>
+            </header>
+
+            <!-- Stats cards -->
+            <div class="stats-container" id="statsContainer">
+                <!-- Stats will be populated by JS -->
+            </div>
+
+            <!-- Dashboard content -->
+            <div class="dashboard" id="dashboard">
+                <div class="chart-container">
+                    <h3 class="chart-title">Distribución por Tipo de Institución</h3>
+                    <canvas id="institutionTypeChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3 class="chart-title">Distribución por Género</h3>
+                    <canvas id="genderChart"></canvas>
+                </div>
+                <div class="chart-container large-chart">
+                    <h3 class="chart-title">Evolución de Títulos por Año</h3>
+                    <canvas id="yearTrendChart"></canvas>
+                </div>
+                <div class="chart-container large-chart">
+                    <h3 class="chart-title">Distribución por Género y Año</h3>
+                    <canvas id="genderYearChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3 class="chart-title">Top 10 Carreras</h3>
+                    <canvas id="careersChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3 class="chart-title">Distribución por Tipo de Gestión</h3>
+                    <canvas id="managementTypeChart"></canvas>
+                </div>
+                <div class="chart-container large-chart">
+                    <h3 class="chart-title">Top 10 Instituciones</h3>
+                    <canvas id="institutionsChart"></canvas>
+                </div>
+                <div class="chart-container large-chart">
+                    <h3 class="chart-title">Tendencia Mensual de Títulos</h3>
+                    <canvas id="monthlyTrendChart"></canvas>
+                </div>
+            </div>
+
+            <footer>
+                <p>Dashboard desarrollado para el análisis de datos del área de salud - 2025</p>
+                <p>Carlos Rodriguez Fernandez</p>
+                <p>UNCA</p>
+
+
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
